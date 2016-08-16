@@ -10,3 +10,14 @@ services:
       - 80
     volumes_from:
       - backend
+  php:
+    build: docker/php
+    volumes_from:
+      - backend
+  db:
+    image: mariadb
+    environment:
+      MYSQL_USER: drupal
+      MYSQL_PASSWORD: drupal
+      MYSQL_DATABASE: drupal
+      MYSQL_ROOT_PASSWORD: root
