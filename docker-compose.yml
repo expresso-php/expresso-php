@@ -1,0 +1,12 @@
+version: '2'
+services:
+  backend:
+    image: debian:jessie
+    volumes:
+      - .:/var/www
+  nginx:
+    build: docker/nginx
+    ports:
+      - 80
+    volumes_from:
+      - backend
