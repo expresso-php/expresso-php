@@ -2,14 +2,16 @@
 
 A simple Docker & Drupal for development. This is all.
 
-### Nginx server + PHP 5.6
+### Apache + PHP 5.6
+
+This branch is still on progress. For more stable, use the nginx branches.
+
 What's included:
 
-  - Nginx
-  - PHP 5.6 (fpm)
+  - PHP 5.6 (based on apache)
   - Mariadb
 
-Check the other branches of this repo for some more options (php 7 or apache).
+Check the other branches of this repo for some more options.
 
 ### Official containers only
 All of this is based on officials containers, so you won't download any
