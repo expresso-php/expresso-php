@@ -1,14 +1,15 @@
-# Simple Docker Drupal
+# Expresso PHP
 
-A simple Docker & Drupal for development. This is all.
+Express and simple docker setup for all your PHP development.
 
-### Apache + PHP 5.6
+### Nginx + PHP 7
 
 This branch is still on progress. For more stable, use the nginx branches.
 
 What's included:
 
-  - PHP 5.6 (based on apache)
+  - Nginx
+  - PHP 7
   - Mariadb
 
 Check the other branches of this repo for some more options.
@@ -25,9 +26,15 @@ Run docker compose.
 $ docker-compose up -d
 ```
 
-Import your database or install your site.
+Place your PHP files in the folder called web.
+
+That's it!
+
+### Drush (command line tool for Drupal)
+
+Run drush
 ```sh
-$  docker-compose run --rm php ./../vendor/bin/drush site-install
+$  docker-compose run --rm php drush help
 ```
 
 ### Database credentials
