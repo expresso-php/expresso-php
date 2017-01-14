@@ -2,14 +2,14 @@
 
 Express and simple docker setup for all your PHP development.
 
-### Nginx + PHP 7
+### Nginx + PHP
 
 This branch is still on progress. For more stable, use the nginx branches.
 
 What's included:
 
   - Nginx
-  - PHP 7
+  - PHP
   - Mariadb
 
 Check the other branches of this repo for some more options.
@@ -18,11 +18,18 @@ Check the other branches of this repo for some more options.
 All of this is based on officials containers, so you won't download any
 specific containers to use this project.
 
+### PHP 7 or PHP 5?
+You can switch between the latest release of PHP 7 or the latest of PHP 5, by
+changing the first line of the file "docker/php/Dockerfile".
+```
+FROM php:5-fpm
+```
+
 ### Get started
 All your Drupal files should be placed into the folder "web".
 
 Run docker compose.
-```sh
+```
 $ docker-compose up -d
 ```
 
@@ -33,7 +40,7 @@ That's it!
 ### Drush (command line tool for Drupal)
 
 Run drush
-```sh
+```
 $  docker-compose run --rm php drush help
 ```
 
