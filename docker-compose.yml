@@ -4,10 +4,14 @@ services:
     image: debian:jessie
     volumes:
       - .:/var/www
-  php:
-    build: docker/php
+  nginx:
+    build: docker/nginx
     ports:
       - 80
+    volumes_from:
+      - backend
+  php:
+    build: docker/php
     volumes_from:
       - backend
   db:
