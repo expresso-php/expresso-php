@@ -48,9 +48,9 @@ $  docker-compose run --rm php drush help
 ### Database credentials
 This is for development !!
 
-* User: drupal
-* Password: drupal
-* Database: drupal
+* User: phpexpresso
+* Password: phpexpresso
+* Database: phpexpresso
 
 ### MySQL and PhpMyAdmin credentials
 The port of PhpMyAdmin is 8181, access PhpMyAdmin by going to http://localhost:8181.
