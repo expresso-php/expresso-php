@@ -1,7 +1,13 @@
-FROM php:7-fpm
+FROM php:7-apache
 
 RUN apt-get update -qq \
   && apt-get install wget mysql-client -yq
+
+RUN a2enmod rewrite
+
+ADD vhost.conf /etc/apache2/sites-available/000-default.conf
+
+RUN a2ensite 000-default
 
 # install the PHP extensions we need
 RUN apt-get update && apt-get install -y libpng12-dev libjpeg-dev libpq-dev \
