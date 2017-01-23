@@ -23,8 +23,6 @@ services:
       MYSQL_ROOT_PASSWORD: root
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
-    links:
-      - db
     ports:
       - 8181:80
     environment:
