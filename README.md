@@ -11,6 +11,7 @@ What's included:
   - Nginx
   - PHP
   - Mariadb
+  - PhpMyAdmin
 
 Check the other branches of this repo for some more options.
 
@@ -50,3 +51,7 @@ This is for development !!
 * User: drupal
 * Password: drupal
 * Database: drupal
+
+### MySQL and PhpMyAdmin credentials
+* Username: root
+* Password: root

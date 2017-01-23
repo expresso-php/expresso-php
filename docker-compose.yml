@@ -21,3 +21,11 @@ services:
       MYSQL_PASSWORD: drupal
       MYSQL_DATABASE: drupal
       MYSQL_ROOT_PASSWORD: root
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    links:
+      - db
+    ports:
+      - 8181:80
+    environment:
+      MYSQL_ROOT_PASSWORD: root
