@@ -13,9 +13,9 @@ services:
   db:
     image: mariadb
     environment:
-      MYSQL_USER: drupal
-      MYSQL_PASSWORD: drupal
-      MYSQL_DATABASE: drupal
+      MYSQL_USER: phpexpresso
+      MYSQL_PASSWORD: phpexpresso
+      MYSQL_DATABASE: phpexpresso
       MYSQL_ROOT_PASSWORD: root
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
