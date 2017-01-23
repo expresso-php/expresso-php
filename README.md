@@ -2,13 +2,13 @@
 
 Express and simple docker setup for all your PHP development.
 
-### Nginx + PHP
+### Apache + PHP
 
-This branch is still on progress. For more stable, use the nginx branches.
+This branch is still on progress. For more stable, use the apache branches.
 
 What's included:
 
-  - Nginx
+  - Apache
   - PHP
   - Mariadb
 
