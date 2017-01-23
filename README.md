@@ -4,8 +4,6 @@ Express and simple docker setup for all your PHP development.
 
 ### Apache + PHP
 
-This branch is still on progress. For more stable, use the apache branches.
-
 What's included:
 
   - Apache
@@ -22,7 +20,7 @@ specific containers to use this project.
 You can switch between the latest release of PHP 7 or the latest of PHP 5, by
 changing the first line of the file "docker/php/Dockerfile".
 ```
-FROM php:5-fpm
+FROM php:5-apache
 ```
 
 ### Get started
