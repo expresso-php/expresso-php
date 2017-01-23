@@ -9,6 +9,7 @@ What's included:
   - Apache
   - PHP
   - Mariadb
+  - PhpMyAdmin
 
 Check the other branches of this repo for some more options.
 
@@ -48,3 +49,8 @@ This is for development !!
 * User: drupal
 * Password: drupal
 * Database: drupal
+
+### MySQL and PhpMyAdmin credentials
+The port of PhpMyAdmin is 8181, access PhpMyAdmin by going to http://localhost:8181.
+* Username: root
+* Password: root
