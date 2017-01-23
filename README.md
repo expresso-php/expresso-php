@@ -53,5 +53,6 @@ This is for development !!
 * Database: drupal
 
 ### MySQL and PhpMyAdmin credentials
+The port of PhpMyAdmin is 8181, access PhpMyAdmin by going to http://localhost:8181.
 * Username: root
 * Password: root
