@@ -4,7 +4,7 @@ services:
     image: debian:jessie
     volumes:
       - .:/var/www
-  php:
+  php_apache:
     build: docker/php
     ports:
       - 80
