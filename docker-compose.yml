@@ -13,13 +13,15 @@ services:
   db:
     image: mariadb
     environment:
-      MYSQL_USER: phpexpresso
-      MYSQL_PASSWORD: phpexpresso
-      MYSQL_DATABASE: phpexpresso
+      MYSQL_USER: expresso-php
+      MYSQL_PASSWORD: expresso-php
+      MYSQL_DATABASE: expresso-php
       MYSQL_ROOT_PASSWORD: root
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     ports:
-      - 8181:80
+      - 80
+    links:
+      - db
     environment:
       MYSQL_ROOT_PASSWORD: root
