@@ -15,7 +15,6 @@ services:
       MYSQL_ROOT_PASSWORD: root
     volumes:
       - dbdata:/var/lib/mysql
-
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     ports:
@@ -26,4 +25,3 @@ volumes:
 ## persistent data volume for mysql data
   dbdata:
     driver: local
-    
