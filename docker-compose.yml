@@ -8,6 +8,8 @@ services:
       - .:/var/www
   php_nginx:
     build: docker/php
+    volumes:
+      - .:/var/www
   db:
     image: mariadb
     environment:
