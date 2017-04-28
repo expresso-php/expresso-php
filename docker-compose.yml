@@ -1,15 +1,11 @@
 version: '2'
 services:
-  backend:
-    image: debian:jessie
-    volumes:
-      - .:/var/www
   php_apache:
     build: docker/php
     ports:
       - 80
-    volumes_from:
-      - backend
+    volumes:
+      - .:/var/www
   db:
     image: mariadb
     environment:
@@ -17,9 +13,15 @@ services:
       MYSQL_PASSWORD: expresso-php
       MYSQL_DATABASE: expresso-php
       MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - dbdata:/var/lib/mysql
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     ports:
       - 80
     environment:
       MYSQL_ROOT_PASSWORD: root
+volumes:
+## persistent data volume for mysql data
+  dbdata:
+    driver: local
