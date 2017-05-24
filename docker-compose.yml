@@ -2,12 +2,16 @@ version: '2'
 services:
   nginx:
     build: docker/nginx
+    links:
+      - php
     ports:
-      - 80
-    volumes:
-      - .:/var/www
+      - 127.0.100.100:80:80
+    volumes_from:
+      - php_nginx
   php_nginx:
     build: docker/php
+    links:
+      - db:db.expresso.dev
     volumes:
       - .:/var/www
   db:
@@ -22,9 +26,11 @@ services:
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     ports:
-      - 80
+      - 127.0.100.100:8181:80
     environment:
       MYSQL_ROOT_PASSWORD: root
+    links:
+      - db
 volumes:
 ## persistent data volume for mysql data
   dbdata:
