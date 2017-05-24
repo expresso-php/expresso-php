@@ -12,6 +12,7 @@ services:
     build: docker/php
     links:
       - db:db.expresso.dev
+      - mailhog
     volumes:
       - .:/var/www
   db:
@@ -31,6 +32,10 @@ services:
       MYSQL_ROOT_PASSWORD: root
     links:
       - db
+  mailhog:
+    image: mailhog/mailhog:latest
+    ports:
+      - 127.0.100.100:8025:8025
 volumes:
 ## persistent data volume for mysql data
   dbdata:
