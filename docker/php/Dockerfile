@@ -1,5 +1,17 @@
 FROM php:7-fpm
 
+# Install & configure gosu.
+# Many thanks to https://denibertovic.com/posts/handling-permissions-with-docker-volumes/
+RUN apt-get update && apt-get -y --no-install-recommends install \
+    ca-certificates \
+    curl
+RUN gpg --keyserver ha.pool.sks-keyservers.net --recv-keys B42F6819007F00F88E364FD4036A9C25BF357DD4
+RUN curl -o /usr/local/bin/gosu -SL "https://github.com/tianon/gosu/releases/download/1.4/gosu-$(dpkg --print-architecture)" &&\
+    curl -o /usr/local/bin/gosu.asc -SL "https://github.com/tianon/gosu/releases/download/1.4/gosu-$(dpkg --print-architecture).asc" &&\
+    gpg --verify /usr/local/bin/gosu.asc &&\
+    rm /usr/local/bin/gosu.asc &&\
+    chmod +x /usr/local/bin/gosu
+
 RUN apt-get update -qq \
   && apt-get install wget mysql-client -yq
 
@@ -29,4 +41,14 @@ RUN php drush core-status
 RUN chmod +x drush
 RUN mv drush /usr/local/bin
 
+# Set directory permissions on /var/www:
+RUN chown www-data:www-data /var/www
+
+# Set a Docker entrypoint script:
+COPY entrypoint.sh /usr/local/bin/entrypoint.sh
+RUN chmod 755 /usr/local/bin/entrypoint.sh
+ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
+
 WORKDIR /var/www/web
+
+CMD ["php-fpm"]
