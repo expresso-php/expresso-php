@@ -21,6 +21,8 @@ services:
       - 127.0.100.100:8181:80
     environment:
       MYSQL_ROOT_PASSWORD: root
+    links:
+      - db.expresso-php.dev:db
 volumes:
 ## persistent data volume for mysql data
   dbdata:
