@@ -25,7 +25,18 @@ FROM php:5-apache
 ```
 
 ### Get started
-All your Drupal files should be placed into the folder "web".
+Add the project domain to your local Hosts file, and point it to
+`127.0.100.100`.
+- Paste the following into `/etc/hosts`
+  (`c:\Windows\System32\drivers\etc\hosts` for Windows users):
+
+        127.0.100.100  expresso.dev db.expresso.dev
+
+    - Mac users: Run the following to attach an unused IP to the lo0 interface.
+
+            sudo ifconfig lo0 alias 127.0.100.100/24
+
+All your PHP files should be placed into the folder "web".
 
 Run docker compose.
 ```
