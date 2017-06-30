@@ -1,5 +1,11 @@
 FROM php:7-fpm
 
+# Install Mailhog Sendmail support.
+RUN apt-get update -qq && apt-get install -yq git golang-go &&\
+    mkdir -p /opt/go &&\
+    export GOPATH=/opt/go &&\
+    go get github.com/mailhog/mhsendmail
+
 RUN apt-get update -qq \
   && apt-get install wget mysql-client -yq
 
@@ -28,5 +34,10 @@ RUN php drush core-status
 # Make `drush` executable as a command from anywhere. Destination can be anywhere on $PATH.
 RUN chmod +x drush
 RUN mv drush /usr/local/bin
+
+# Copy PHP configs:
+COPY conf.d/* /usr/local/etc/php/conf.d/
+RUN chmod 644 /usr/local/etc/php/conf.d/*
+RUN chgrp staff /usr/local/etc/php/conf.d/*
 
 WORKDIR /var/www/web
