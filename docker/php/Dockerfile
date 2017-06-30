@@ -9,6 +9,12 @@ ADD vhost.conf /etc/apache2/sites-available/000-default.conf
 
 RUN a2ensite 000-default
 
+# Install Mailhog Sendmail support.
+RUN apt-get update -qq && apt-get install -yq git golang-go &&\
+    mkdir -p /opt/go &&\
+    export GOPATH=/opt/go &&\
+    go get github.com/mailhog/mhsendmail
+
 # install the PHP extensions we need
 RUN apt-get update && apt-get install -y libpng12-dev libjpeg-dev libpq-dev \
     && rm -rf /var/lib/apt/lists/* \
@@ -34,5 +40,10 @@ RUN php drush core-status
 # Make `drush` executable as a command from anywhere. Destination can be anywhere on $PATH.
 RUN chmod +x drush
 RUN mv drush /usr/local/bin
+
+# Copy PHP configs:
+COPY conf.d/* /usr/local/etc/php/conf.d/
+RUN chmod 644 /usr/local/etc/php/conf.d/*
+RUN chgrp staff /usr/local/etc/php/conf.d/*
 
 WORKDIR /var/www/web

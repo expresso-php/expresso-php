@@ -2,11 +2,14 @@ version: '2'
 services:
   php_apache:
     build: docker/php
+    links:
+      - db:db.expresso.dev
+      - mailhog
     ports:
-      - 80
+      - 127.0.100.100:80:80
     volumes:
       - .:/var/www
-  db:
+  db.expresso.dev:
     image: mariadb
     environment:
       MYSQL_USER: expresso-php
@@ -18,9 +21,15 @@ services:
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     ports:
-      - 80
+      - 127.0.100.100:8181:80
     environment:
       MYSQL_ROOT_PASSWORD: root
+    links:
+      - db.expresso.dev:db
+  mailhog:
+    image: mailhog/mailhog:latest
+    ports:
+      - 127.0.100.100:8025:8025
 volumes:
 ## persistent data volume for mysql data
   dbdata:
