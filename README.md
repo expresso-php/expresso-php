@@ -27,6 +27,15 @@ FROM php:5-apache
 ### Get started
 All your Drupal files should be placed into the folder "web".
 
+Identify your host machine's user & group id's and reassign the Docker container
+service `www-data` user & group id's to read and write files with uid:gid values
+equal to the host machine. Run the following to declare uid and gid values in
+Docker-Compose environment variable file `/.env`.
+```sh
+echo "HOST_UID=$(id -u)" > .env
+echo "HOST_GID=$(id -g)" >> .env
+```
+
 Run docker compose.
 ```
 $ docker-compose up -d

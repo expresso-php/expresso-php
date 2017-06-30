@@ -1,0 +1,2 @@
+# Ignore Docker Compose environment file.
+/.env
