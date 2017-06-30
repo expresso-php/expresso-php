@@ -12,6 +12,7 @@ What's included:
   - PHP
   - Mariadb
   - PhpMyAdmin
+  - Mailhog
 
 Check the other branches of this repo for some more options.
 
