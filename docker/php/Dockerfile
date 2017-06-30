@@ -25,6 +25,16 @@ RUN { \
         echo 'opcache.enable_cli=1'; \
     } > /usr/local/etc/php/conf.d/opcache-recommended.ini
 
+# Install MailHog Sendmail support.
+RUN apt-get update -qq && apt-get install -yq git golang-go &&\
+    mkdir -p /opt/go &&\
+    export GOPATH=/opt/go &&\
+    go get github.com/mailhog/mhsendmail
+
+# Copy PHP configs.
+COPY conf.d/* /usr/local/etc/php/conf.d/
+RUN chmod 644 /usr/local/etc/php/conf.d/*
+
 # Install drush.
 # Download latest stable release using the code below or browse to github.com/drush-ops/drush/releases.
 RUN php -r "readfile('https://s3.amazonaws.com/files.drush.org/drush.phar');" > drush
