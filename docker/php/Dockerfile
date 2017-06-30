@@ -29,4 +29,16 @@ RUN php drush core-status
 RUN chmod +x drush
 RUN mv drush /usr/local/bin
 
+# Update the www-data services's uid & gid to match the mounted file system.
+# As a default, use 1000:1000.
+ARG HOST_UID=1000
+ARG HOST_GID=1000
+RUN usermod -u ${HOST_UID} www-data &&\
+    groupmod -g ${HOST_GID} www-data
+
+# Change ownership of some system directories to grant control to `www-data`.
+RUN chown www-data:www-data /var/www &&\
+    chown -Rf www-data:www-data /usr/local/etc/php &&\
+    chown -Rf www-data:www-data /tmp
+
 WORKDIR /var/www/web

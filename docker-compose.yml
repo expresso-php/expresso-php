@@ -1,4 +1,4 @@
-version: '2'
+version: '2.1'
 services:
   nginx:
     build: docker/nginx
@@ -7,7 +7,11 @@ services:
     volumes:
       - .:/var/www
   php_nginx:
-    build: docker/php
+    build:
+      context: docker/php
+      args:
+        HOST_UID: ${HOST_UID:-1000}
+        HOST_GID: ${HOST_GID:-1000}
     volumes:
       - .:/var/www
   db:
