@@ -2,20 +2,15 @@ version: '2'
 services:
   nginx:
     build: docker/nginx
-    links:
-      - php
     ports:
       - 127.0.100.100:80:80
     volumes_from:
       - php_nginx
   php_nginx:
     build: docker/php
-    links:
-      - db:db.expresso.dev
-      - mailhog
     volumes:
       - .:/var/www
-  db:
+  db.expresso.dev:
     image: mariadb
     environment:
       MYSQL_USER: expresso-php
@@ -31,7 +26,7 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: root
     links:
-      - db
+      - db.expresso.dev:db
   mailhog:
     image: mailhog/mailhog:latest
     ports:
