@@ -21,6 +21,10 @@ services:
       - 80
     environment:
       MYSQL_ROOT_PASSWORD: root
+  mailhog:
+    image: mailhog/mailhog
+    ports:
+      - 8025
 volumes:
 ## persistent data volume for mysql data
   dbdata:
