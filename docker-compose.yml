@@ -29,6 +29,12 @@ services:
     image: mailhog/mailhog
     ports:
       - 8025
+  # SOLR 4.10.4 for Drupal ApacheSOLR contrib module.
+  # Uncomment next lines to enable SOLR.
+  # solr:
+  #   build: docker/solr
+  #   ports:
+  #     - "8983:8983"
 volumes:
 ## persistent data volume for mysql data
   dbdata:
