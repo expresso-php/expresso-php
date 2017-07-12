@@ -57,3 +57,7 @@ This is for development !!
 To access PhpMyAdmin, run `docker ps` to get its dynamic port.
 * Username: root
 * Password: root
+
+### SOLR Integration
+To enable SOLR, uncomment corresponding lines from docker-compose.yml file.
+SOLR can be accessed in [local-domain]:8983/solr/#/ ( e.g. http://192.168.99.100:8983/solr/#/ )
