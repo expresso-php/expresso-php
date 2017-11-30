@@ -60,4 +60,5 @@ To access PhpMyAdmin, run `docker ps` to get its dynamic port.
 
 ### SOLR Integration
 To enable SOLR, uncomment corresponding lines from docker-compose.yml file.
+Current version is 7.1.0, to use a different version change the SOLR_URL value with the preferred release version in the SOLR Dockerfile. Releases are available in https://archive.apache.org/dist/lucene/solr/.
 SOLR can be accessed in [local-domain]:8983/solr/#/ ( e.g. http://192.168.99.100:8983/solr/#/ )
