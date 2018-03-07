@@ -36,8 +36,8 @@ COPY conf.d/* /usr/local/etc/php/conf.d/
 RUN chmod 644 /usr/local/etc/php/conf.d/*
 
 # Install drush.
-# Download latest stable release using the code below or browse to github.com/drush-ops/drush/releases.
-RUN php -r "readfile('https://s3.amazonaws.com/files.drush.org/drush.phar');" > drush
+# Download Drush 8.1.16 from github.com/drush-ops/drush/releases. This is a temporary fix.
+RUN php -r "readfile('https://github.com/drush-ops/drush/releases/download/8.1.16/drush.phar');" > drush
 # Or use our upcoming release: php -r "readfile('https://s3.amazonaws.com/files.drush.org/drush-unstable.phar');" > drush
 # Test your install.
 RUN php drush core-status
