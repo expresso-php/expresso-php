@@ -45,29 +45,73 @@ Everytime you change a dockerfile (example "docker/php/Dockerfile"), you need to
 This project uses the official images from PHP, see all available options on: [PHP's official Docker Hub page](https://hub.docker.com/_/php/).
 
 ## Get started
-All your PHP files should be placed into the folder "web".
+1. Install the prerequisites.
+2. Create the docker containers.
+3. Place your files in web.
 
-Create the Expresso PHP containers for your project:
+### Install the prerequisites
+*Linux*  
+You can use the official documentation on installing Docker: https://docs.docker.com/install/
+
+*macOS*  
+We recommend you to use "Dinghy" for faster development using Docker on MacOS.
+Follow the steps: https://github.com/codekitchen/dinghy#install  
+Then install docker-compose using brew:
+``
+brew install docker docker-machine
+``
+
+*Windows*  
+It seems that Docker is supported only by Windows 10 pro edition. The official documentation on installing 
+[Docker](https://docs.docker.com/install/)
+
+### Create the docker containers
+1. Download this project and rename the folder according to your project.
+A good practice is to create a folder called "docker" in your home directory, this is where you will keep all your docker projects. In command line, this would be:
+```
+$ cd ~
+$ mkdir docker
+$ git clone https://github.com/expresso-php/expresso-php.git myproject
+```
+2. Create the Expresso PHP containers for your project:
 ```
 $ docker-compose up -d
 ```
-
-This is only for the first time, to create the containers. Next time you can just start them:
-```
+This is only for the first time, to create the containers. Next time you can just start them with:
+``
 $ docker start
-```
-
-Check which port is Nginx using with
+``
+3. Check which port is Nginx using with:
 ```
 $ docker ps
 ```
+Look for a line with the port number. For example: "myproject_nginx_1        nginx -g daemon off;            Up      0.0.0.0:**32770**->80/tcp", in this case "32770" is my port number.
 
-That's it! Visit http://localhost:32770 (where 32770 is my application's port) or http://192.168.99.100:32770 (if you use a VM like [dinghy](https://github.com/codekitchen/dinghy)).
+That's it! Visit http://localhost:32770 (replace 32770 with your application's port) or http://192.168.99.100:32770 (if you use a VM like [dinghy](https://github.com/codekitchen/dinghy)).
 
-### Place your PHP code into the folder web
-Place your PHP project in the folder called web.
+### Place your files in web.
+Expresso PHP will be looking for PHP files placed into the folder web.
+You can delete the existing web folder, and replace it by your project.
+
+If your project is on git, a good practice is to do a symlink to your project. According to the previous step in this README, here is how to do in command line:
 ```
-$ cd web
+$ cd docker
+$ cd myproject
+$ rm -rf web
+```
+Git clone or download your project, example:
+```
+git clone https://github.com/myproject/myproject.git myproject
+```
+Create a symlink with your project's php files and web, example:
+```
+$ ln -s myproject/docroot web
+```
+
+## Useful commands
+To start Expresso PHP:
+```
+$ docker-compose start
 ```
 
 To stop Expresso PHP:
@@ -75,18 +119,19 @@ To stop Expresso PHP:
 $ docker-compose stop
 ```
 
-### SSH the containers
-
-To SSH the container with PHP:
+To SSH the containers
 ```
 $ docker-compose exec php_nginx /bin/bash
 ```
 
-### Drush (command line tool for Drupal)
-
-Once you have placed your project into the "web" folder, you can run drush:
+Drush (command line tool for Drupal)
 ```
 $  docker-compose exec php_nginx drush help
+```
+
+Import database with Drupal and Drush
+```
+$  docker-compose run --rm php_apache bash -c '$(drush sql-connect)' < my_database.sql
 ```
 
 ### Database credentials
