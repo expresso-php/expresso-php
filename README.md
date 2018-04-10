@@ -131,7 +131,7 @@ $  docker-compose exec php_nginx drush help
 
 Import database with Drupal and Drush
 ```
-$  docker-compose run --rm php_apache bash -c '$(drush sql-connect)' < my_database.sql
+$  docker-compose run --rm php_nginx bash -c '$(drush sql-connect)' < my_database.sql
 ```
 
 ### Database credentials
