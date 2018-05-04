@@ -1,7 +1,8 @@
 # Expresso PHP
 
-Bored of complex implementations of Docker for you development workflow?
-This is a fast and simple Docker setup for all your PHP development. Quick but not dirty. Tested with:
+This is a fast and simple Docker setup for all your PHP development. Quick but not dirty. 
+
+Tested with:
 
 * Drupal 7 and Drupal 8
 * Wordpress
