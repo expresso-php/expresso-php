@@ -40,7 +40,7 @@ Extra PHP librairies?
 Check the same file: docker/php/Dockerfile
 You can add your own librairies.
 
-Everytime you change a dockerfile (example "docker/php/Dockerfile"), you need to rebuild your containers with the docker compose command "docker-compose build --no-cache --force" and run again "docker-compose up -d".
+Everytime you change a dockerfile (example "docker/php/Dockerfile"), you need to rebuild your containers with the docker compose command `docker-compose build --no-cache --force` and run again `docker-compose up -d`.
 
 ### More PHP versions?
 This project uses the official images from PHP, see all available options on: [PHP's official Docker Hub page](https://hub.docker.com/_/php/).
@@ -171,4 +171,46 @@ Un-comment script below:
 #    } >> /usr/local/etc/php/php.ini
 ##############################################
 ```
-Change the value of "xdebug.remote_port" based on the port in your local machine.
+Change the value of `xdebug.remote_host` based on the IP Address in your local machine.
+
+### VSCode Setup
+By now you should have already setup expresso-php with your project based on instruction above.
+
+1. Setup the workspace.
+
+* Go to 'File' -> 'Open Workspace' -> ./docker/myproject/docroot/index.php'
+
+2. Configure XDebug setting.
+
+* Click 'Debug' tab on the left side.
+* Click gear-like button just on the top, then `launch.json` will be open.
+* Configure the settings something as below:
+```
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Listen for XDebug",
+      "type": "php",
+      "request": "launch",
+      "port": 9000,
+      "pathMappings": {
+        "/var/www": "/Users/someuser/Sites/docker"
+      },
+
+    },
+    {
+      "name": "Launch currently open script",
+      "type": "php",
+      "request": "launch",
+      "program": "${file}",
+      "cwd": "${fileDirname}",
+      "port": 9000
+    }
+  ]
+}
+```
+Please note that value of `"/docker"` in `pathMappings` may differ, which is based on your local absolute directory where root folder of `expresso-php` located.
