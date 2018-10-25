@@ -1,6 +1,6 @@
 # Expresso PHP
 
-This is a fast and simple Docker setup for all your PHP development. Quick but not dirty. 
+This is a fast and simple Docker setup for all your PHP development. Quick but not dirty.
 
 Tested with:
 
@@ -25,7 +25,7 @@ Check the other branch of this repo for Apache + PHP.
 
 ### Official containers only
 We won't force you to download our own images.
-All of this is based on officials containers, so you won't download any specific containers to use this project. 
+All of this is based on officials containers, so you won't download any specific containers to use this project.
 
 All you have all the options available as soon as they are released on Docker Hub by PHP, Nginx, Apache ... etc.
 
@@ -40,7 +40,7 @@ Extra PHP librairies?
 Check the same file: docker/php/Dockerfile
 You can add your own librairies.
 
-Everytime you change a dockerfile (example "docker/php/Dockerfile"), you need to rebuild your containers with the docker compose command "build --no-cache --force" and run again "composer up -d".
+Everytime you change a dockerfile (example "docker/php/Dockerfile"), you need to rebuild your containers with the docker compose command "docker-compose build --no-cache --force" and run again "docker-compose up -d".
 
 ### More PHP versions?
 This project uses the official images from PHP, see all available options on: [PHP's official Docker Hub page](https://hub.docker.com/_/php/).
@@ -51,19 +51,19 @@ This project uses the official images from PHP, see all available options on: [P
 3. Place your files in web.
 
 ### Install the prerequisites
-*Linux*  
+*Linux*
 You can use the official documentation on installing Docker: https://docs.docker.com/install/
 
-*macOS*  
+*macOS*
 We recommend you to use "Dinghy" for faster development using Docker on MacOS.
-Follow the steps: https://github.com/codekitchen/dinghy#install  
+Follow the steps: https://github.com/codekitchen/dinghy#install
 Then install docker-compose using brew:
 ``
 brew install docker docker-machine
 ``
 
-*Windows*  
-It seems that Docker is supported only by Windows 10 pro edition. The official documentation on installing 
+*Windows*
+It seems that Docker is supported only by Windows 10 pro edition. The official documentation on installing
 [Docker](https://docs.docker.com/install/)
 
 ### Create the docker containers
@@ -147,3 +147,28 @@ To access PhpMyAdmin, run `docker ps` to get its dynamic port.
 * Username: root
 * Password: root
 
+## Install and setup XDebug
+Un-comment script below:
+```
+##############################################
+# RUN cd ~/ \
+#    && wget http://xdebug.org/files/xdebug-2.6.1.tgz \
+#    && tar -xvzf ~/xdebug-2.6.1.tgz \
+#    && cd ~/xdebug-2.6.1 \
+#    && phpize \
+#    && ./configure \
+#    && make \
+#    && cp modules/xdebug.so /usr/local/lib/php/extensions/no-debug-non-zts-20160303/xdebug.so
+
+#RUN cp /usr/local/etc/php/php.ini-development /usr/local/etc/php/php.ini
+#RUN { \
+#        echo 'zend_extension = /usr/local/lib/php/extensions/no-debug-non-zts-20160303/xdebug.so'; \
+#        echo '[XDebug]'; \
+#        echo 'xdebug.remote_enable = 1'; \
+#        echo 'xdebug.remote_autostart = 1'; \
+#        echo 'xdebug.remote_host = 192.168.1.19'; \
+#        echo 'xdebug.remote_port = 9000'; \
+#    } >> /usr/local/etc/php/php.ini
+##############################################
+```
+Change the value of "xdebug.remote_port" based on the port in your local machine.
