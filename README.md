@@ -178,7 +178,7 @@ By now you should have already setup expresso-php with your project based on ins
 
 1. Setup the workspace.
 
-* Go to 'File' -> 'Open Workspace' -> ./docker/myproject/docroot/index.php'
+* Go to 'File' -> 'Open Workspace' -> ./docker/myproject/docroot/index.php'git
 
 2. Configure XDebug setting.
 
@@ -214,3 +214,8 @@ By now you should have already setup expresso-php with your project based on ins
 }
 ```
 Please note that value of `"/docker"` in `pathMappings` may differ, which is based on your local absolute directory where root folder of `expresso-php` located.
+
+To debug, on the 'Debug' tab:
+1. Set breakpoint in any code. To test for the first time, preferably somewhere in `index.php` file.
+2. Click 'Play'-like button that says 'Listen for XDebug'.
+3. Open your local website/project. By now you should already have all the debug information displayed on the left-side.
