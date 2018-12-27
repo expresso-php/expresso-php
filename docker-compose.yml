@@ -25,6 +25,17 @@ services:
     image: mailhog/mailhog
     ports:
       - 8025
+  # SOLR
+  # Uncomment this section to enable SOLR.
+  # solr:
+  #   image: solr
+  #   ports:
+  #    - 8983:8983
+  #   entrypoint:
+  #    - docker-entrypoint.sh
+  #    - solr-precreate
+  #    - mycore
+  # END SOLR
 volumes:
 ## persistent data volume for mysql data
   dbdata:
