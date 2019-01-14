@@ -4,10 +4,10 @@ RUN apt-get update -qq \
   && apt-get install wget mysql-client -yq
 
 # install the PHP extensions we need
-RUN apt-get update && apt-get install -y libpng12-dev libjpeg-dev libpq-dev \
+RUN apt-get update && apt-get install -y libpng-dev libjpeg-dev libpq-dev \
     && rm -rf /var/lib/apt/lists/* \
     && docker-php-ext-configure gd --with-png-dir=/usr --with-jpeg-dir=/usr \
-    && docker-php-ext-install gd mbstring opcache pdo pdo_mysql pdo_pgsql zip
+    && docker-php-ext-install gd mbstring opcache pdo pdo_mysql pdo_pgsql zip mysqli
 # set recommended PHP.ini settings
 # see https://secure.php.net/manual/en/opcache.installation.php
 RUN { \
@@ -30,13 +30,15 @@ COPY conf.d/* /usr/local/etc/php/conf.d/
 RUN chmod 644 /usr/local/etc/php/conf.d/*
 
 # Install drush.
-# Download latest stable release using the code below or browse to github.com/drush-ops/drush/releases.
-RUN php -r "readfile('https://s3.amazonaws.com/files.drush.org/drush.phar');" > drush
-# Or use our upcoming release: php -r "readfile('https://s3.amazonaws.com/files.drush.org/drush-unstable.phar');" > drush
+# Download Drush 8.1.16 from github.com/drush-ops/drush/releases. This is a temporary fix.
+RUN php -r "readfile('https://github.com/drush-ops/drush/releases/download/8.1.16/drush.phar');" > drush
 # Test your install.
 RUN php drush core-status
 # Make `drush` executable as a command from anywhere. Destination can be anywhere on $PATH.
 RUN chmod +x drush
 RUN mv drush /usr/local/bin
+
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+RUN composer --version
 
 WORKDIR /var/www/web
