@@ -1,5 +1,5 @@
 
-FROM    openjdk:8-jre
+FROM    openjdk:11-jre
 MAINTAINER  Martijn Koster "mak-docker@greenhills.co.uk"
 
 # Override the solr download location with e.g.:
@@ -14,8 +14,8 @@ ENV SOLR_USER="solr" \
     SOLR_UID="8983" \
     SOLR_GROUP="solr" \
     SOLR_GID="8983" \
-    SOLR_VERSION="7.1.0" \
-    SOLR_URL="${SOLR_DOWNLOAD_SERVER:-https://archive.apache.org/dist/lucene/solr}/7.1.0/solr-7.1.0.tgz" \
+    SOLR_VERSION="7.6.0" \
+    SOLR_URL="${SOLR_DOWNLOAD_SERVER:-https://archive.apache.org/dist/lucene/solr}/7.6.0/solr-7.6.0.tgz" \
     SOLR_SHA256="5cd25cc2634e47efbb529658d6ddd406a7cd1b211affa26563a28db2d80b8133" \
     SOLR_KEYS="38D2EA16DDF5FC722EBC433FDC92616F177050F6" \
     PATH="/opt/solr/bin:/opt/docker-solr/scripts:$PATH"
