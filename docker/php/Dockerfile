@@ -4,7 +4,7 @@ RUN apt-get update -qq \
   && apt-get install wget mysql-client -yq
 
 # install the PHP extensions we need
-RUN apt-get update && apt-get install -y libpng-dev libjpeg-dev libpq-dev \
+RUN apt-get update && apt-get install -y libpng-dev libjpeg-dev libpq-dev libzip-dev \
     && rm -rf /var/lib/apt/lists/* \
     && docker-php-ext-configure gd --with-png-dir=/usr --with-jpeg-dir=/usr \
     && docker-php-ext-install gd mbstring opcache pdo pdo_mysql pdo_pgsql zip mysqli
