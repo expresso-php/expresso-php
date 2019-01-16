@@ -219,3 +219,6 @@ To debug, on the 'Debug' tab:
 1. Set breakpoint in any code. To test for the first time, preferably somewhere in `index.php` file.
 2. Click 'Play'-like button that says 'Listen for XDebug'.
 3. Open your local website/project. By now you should already have all the debug information displayed on the left-side.
+## SOLR Integration
+To enable SOLR, uncomment corresponding lines from docker-compose.yml file.
+SOLR can be accessed in [local-domain]:8983/solr/#/ ( e.g. http://192.168.99.100:8983/solr/#/ )
