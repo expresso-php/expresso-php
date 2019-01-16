@@ -10,8 +10,9 @@ ADD vhost.conf /etc/apache2/sites-available/000-default.conf
 RUN a2ensite 000-default
 
 # install the PHP extensions we need
-RUN apt-get update && apt-get install -y libpng-dev libjpeg-dev libpq-dev \
+RUN apt-get update && apt-get install -y libpng-dev libjpeg-dev libpq-dev libzip-dev zip \
     && rm -rf /var/lib/apt/lists/* \
+    && docker-php-ext-configure zip --with-libzip \
     && docker-php-ext-configure gd --with-png-dir=/usr --with-jpeg-dir=/usr \
     && docker-php-ext-install gd mbstring opcache pdo pdo_mysql pdo_pgsql zip mysqli
 # set recommended PHP.ini settings
