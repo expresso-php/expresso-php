@@ -1,7 +1,7 @@
 FROM php:7-apache
 
 RUN apt-get update -qq \
-  && apt-get install wget mysql-client -yq
+  && apt-get install wget mariadb-client -yq
 
 RUN a2enmod rewrite
 
