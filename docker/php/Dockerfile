@@ -1,7 +1,7 @@
 FROM php:7-fpm
 
 RUN apt-get update -qq \
-  && apt-get install wget mysql-client -yq
+  && apt-get install wget mariadb-client -yq
 
 # install the PHP extensions we need
 RUN apt-get update && apt-get install -y libpng-dev libjpeg-dev libpq-dev libzip-dev zip \
